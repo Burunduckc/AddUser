@@ -11,7 +11,7 @@ import classes from "./UsersModal.module.css";
 export const  UserModal = (prop) => {
     return(
         <div>
-            <div className={classes.backdrop}/>
+            <div className={classes.backdrop} onClick={prop.onDelete}/>
             <Card clssName = {classes.modal}>
                 <header className={classes.header}>
                     <h2>{prop.titleError}</h2>
@@ -20,7 +20,7 @@ export const  UserModal = (prop) => {
                     <p>{prop.msg}</p>
                 </div>
                 <footer className={classes.actions}>
-                    <Btn>Okay</Btn>
+                    <Btn onClick={prop.onDelete}>Okay</Btn>
                 </footer>
             </Card>
         </div>

@@ -9,6 +9,7 @@ import classes from './AddUser.module.css';
 export const AddUser = prop => {
     const [inputUserName, setUserName] = useState('')
     const [inputUserAge, setUserAge] = useState('')
+    const [error, setError] = useState()
 
     const userNameChenge = (e) => {
         setUserName(e.target.value)
@@ -21,9 +22,17 @@ export const AddUser = prop => {
     const addUserHendler = (taret) => {
         taret.preventDefault()
         if (inputUserName.trim().length === 0 || inputUserAge.trim().length === 0){
+        setError({
+            titleError: 'Invalid input',
+            msg: 'Please input a valid name and age (maybe or name or age)'
+        });
         return;
         }
         if (+inputUserAge < 1){
+            setError({
+                titleError: 'Invalid age',
+                msg: 'Please input a valid age (more than one)'
+            });
             return;
         }
         prop.onAddUser(inputUserName, inputUserAge)
@@ -31,9 +40,13 @@ export const AddUser = prop => {
         setUserAge('');
     }
 
+    const errorHandler = (e) => {
+        setError(null)
+    }
+
     return (
         <div>
-        <Error titleError = 'Error' msg = 'Somthing went wrong!'/>
+            {error && <Error titleError = {error.titleError} msg = {error.msg} onDelete={errorHandler}/>}
         <Card clssName={classes.input}>
             <form onSubmit={addUserHendler}>
             <label htmlFor='username'>Username</label>
