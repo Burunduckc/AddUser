@@ -18,13 +18,13 @@ export const AddUser = prop => {
 
     const addUserHendler = (taret) => {
         taret.preventDefault()
-        console.log(inputUserAge, inputUserName)
         if (inputUserName.trim().length === 0 || inputUserAge.trim().length === 0){
-return
+        return;
         }
         if (+inputUserAge < 1){
             return;
         }
+        console.log(inputUserAge, inputUserName)
         setUserName('');
         setUserAge('');
     }
