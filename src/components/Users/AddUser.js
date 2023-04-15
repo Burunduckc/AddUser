@@ -1,8 +1,10 @@
+//Hooks
 import {useState} from 'react'
-
+// UI
 import {CardUser as Card} from "../UI/Card";
 import {Button as Btn} from "../UI/Button";
-
+import {UserModal as Error} from "../UI/UsersModal";
+//Styles
 import classes from './AddUser.module.css';
 export const AddUser = prop => {
     const [inputUserName, setUserName] = useState('')
@@ -24,12 +26,14 @@ export const AddUser = prop => {
         if (+inputUserAge < 1){
             return;
         }
-        console.log(inputUserAge, inputUserName)
+        prop.onAddUser(inputUserName, inputUserAge)
         setUserName('');
         setUserAge('');
     }
 
     return (
+        <div>
+        <Error titleError = 'Error' msg = 'Somthing went wrong!'/>
         <Card clssName={classes.input}>
             <form onSubmit={addUserHendler}>
             <label htmlFor='username'>Username</label>
@@ -42,5 +46,6 @@ export const AddUser = prop => {
             <Btn type='submit'>Add user</Btn>
         </form>
         </Card>
+        </div>
     )
 }

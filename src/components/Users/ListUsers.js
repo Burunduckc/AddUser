@@ -5,7 +5,7 @@ export const UserList = (prop) => {
     return <Card clssName = {styles.users}>
         <ul>
             {prop.users.map(e => {
-                return <li>{e.name} ({e.age} years old)</li>
+                return <li key='g1'>{e.name} ({e.age} years old)</li>
             })}
         </ul>
     </Card>
